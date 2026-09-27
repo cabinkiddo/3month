@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=JetBrains+Mono:wght@300;400&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@source "../components";
+@source "../app";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: "The 3-Month Rule"
+ * Near-black data corridor, single amber/gold accent, thin display type
+ * with tabular monospace numerals for all data.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-signal: var(--signal);
+  --color-signal-dim: var(--signal-dim);
+  --color-noise: var(--noise);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --background: oklch(0.13 0.004 285);
+  --foreground: oklch(0.95 0.005 90);
+
+  --card: oklch(0.17 0.006 285);
+  --card-foreground: oklch(0.95 0.005 90);
+  --popover: oklch(0.17 0.006 285);
+  --popover-foreground: oklch(0.95 0.005 90);
+
+  /* Deep gold — "the data glows" */
+  --primary: oklch(0.82 0.15 85);
+  --primary-foreground: oklch(0.15 0.01 285);
+  --signal: oklch(0.86 0.16 88);
+  --signal-dim: oklch(0.55 0.09 86);
+  --noise: oklch(0.62 0.02 285);
+
+  --secondary: oklch(0.22 0.008 285);
+  --secondary-foreground: oklch(0.93 0.005 90);
+  --muted: oklch(0.2 0.006 285);
+  --muted-foreground: oklch(0.66 0.012 285);
+  --accent: oklch(0.24 0.02 85);
+  --accent-foreground: oklch(0.9 0.08 88);
+
+  --destructive: oklch(0.58 0.19 25);
+  --destructive-foreground: oklch(0.97 0.005 90);
+
+  --border: oklch(0.29 0.008 285);
+  --input: oklch(0.29 0.008 285);
+  --ring: oklch(0.82 0.15 85);
+
+  --font-display: "Outfit", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --gradient-signal: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--signal) 90%, transparent),
+    color-mix(in oklab, var(--signal) 30%, transparent)
+  );
+  --glow-signal: 0 0 40px color-mix(in oklab, var(--signal) 22%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--signal) 30%, transparent);
+  }
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-size: clamp(2.6rem, 7.4vw, 6.4rem);
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  font-size: clamp(2rem, 4.8vw, 3.9rem);
+}
+
+@utility data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility text-glow {
+  text-shadow: var(--glow-signal);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto } *, *::before, *::after { animation-duration: .01ms!important; transition-duration: .01ms!important; } }
+.corridor{position:fixed;inset:0;z-index:0;pointer-events:none}.corridor canvas{display:block;width:100%;height:100%}
