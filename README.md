@@ -21,6 +21,10 @@ npm run preview
 
 Upload the contents of `dist/` to a static hosting provider. `dist/index.html` is the entry point, but keep its `assets/` folder with it. This package includes a prebuilt `dist/` too; rebuild it after editing source.
 
+## Crypto preview
+
+The green portal beside the X icon opens `/crypto/`. The green preview has the same scroll tunnel and an animated portal back to the fund site. Edit its title and copy in `app/crypto/page.tsx`.
+
 ## Edit the X link
 
 The X link in `components/sections/TopHundred.tsx` points to https://x.com/TheDataEdge_. Change `X_PROFILE_URL` there if your handle changes.

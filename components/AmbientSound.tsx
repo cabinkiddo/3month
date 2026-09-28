@@ -1,12 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 
 /** Visitors start the quiet ambient soundtrack with an explicit click. */
-export function AmbientSound() {
+export function AmbientSound({ src = "/data-edge-ambient.mp3" }: { src?: string }) {
   const audio = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    const track = audio.current;
+    if (track && sessionStorage.getItem("data-edge-sound-enabled") === "true") {
+      track.volume = 0.38;
+      track.play().then(() => { setPlaying(true); setError(false); }).catch(() => {
+        // Some browsers require a fresh tap after a full page navigation.
+        setPlaying(false);
+      });
+    }
     const onVisibility = () => {
       if (document.hidden && audio.current) {
         audio.current.pause();
@@ -23,6 +31,7 @@ export function AmbientSound() {
     if (playing) {
       track.pause();
       setPlaying(false);
+      sessionStorage.setItem("data-edge-sound-enabled", "false");
       return;
     }
     try {
@@ -30,6 +39,7 @@ export function AmbientSound() {
       await track.play();
       setPlaying(true);
       setError(false);
+      sessionStorage.setItem("data-edge-sound-enabled", "true");
     } catch {
       setPlaying(false);
       setError(true);
@@ -38,7 +48,7 @@ export function AmbientSound() {
 
   return (
     <>
-      <audio ref={audio} src="/data-edge-ambient.mp3" loop preload="auto" onError={() => setError(true)} />
+      <audio ref={audio} src={src} loop preload="auto" onError={() => setError(true)} />
       <button
         type="button"
         onClick={toggle}

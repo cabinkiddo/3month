@@ -38,8 +38,13 @@ export function RuleSection() {
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="display-lg mt-6 max-w-3xl">
-            Buy the <span className="text-signal text-glow">shape</span>, not the story.
+            Trust the <span className="text-signal text-glow">data</span>, not the story.
           </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-muted-foreground mt-8 max-w-2xl leading-relaxed">
+            A fund can hold hundreds of companies, so its trend reflects more than one company’s fortunes. Look for a steady three-month uptrend and test whether that momentum persists. It may continue, but no trend is a promise.
+          </p>
         </Reveal>
 
         <div className="mt-20 grid gap-10 md:grid-cols-3">

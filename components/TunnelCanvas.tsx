@@ -7,6 +7,7 @@ import { scrollSignal } from "@/hooks/useScrollSignal";
 
 const TUNNEL_DEPTH = 620;
 const GOLD = "#f0b544";
+const GREEN = "#51f69a";
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -19,7 +20,7 @@ function mulberry32(seed: number) {
 }
 
 /** Ticker-like particle dust forming the corridor wall. */
-function DataDust() {
+function DataDust({ color }: { color: string }) {
   const ref = useRef<THREE.Points>(null);
 
   const geometry = useMemo(() => {
@@ -48,7 +49,7 @@ function DataDust() {
   return (
     <points ref={ref} geometry={geometry}>
       <pointsMaterial
-        color={GOLD}
+        color={color}
         size={0.075}
         sizeAttenuation
         transparent
@@ -61,7 +62,7 @@ function DataDust() {
 }
 
 /** Thin line-chart traces streaming down the corridor — the fund universe. */
-function ChartTraces({ count = 46 }: { count?: number }) {
+function ChartTraces({ count = 46, color }: { count?: number; color: string }) {
   const traces = useMemo(() => {
     const rnd = mulberry32(77);
     return Array.from({ length: count }, (_, i) => {
@@ -88,7 +89,7 @@ function ChartTraces({ count = 46 }: { count?: number }) {
         <Line
           key={i}
           points={t.points}
-          color={GOLD}
+          color={color}
           lineWidth={t.width}
           transparent
           opacity={t.opacity}
@@ -100,7 +101,7 @@ function ChartTraces({ count = 46 }: { count?: number }) {
 }
 
 /** The bright convergence point at the end of the corridor: the signal. */
-function Signal() {
+function Signal({ color, green }: { color: string; green: boolean }) {
   const ref = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
@@ -113,12 +114,12 @@ function Signal() {
     <group ref={ref} position={[0, 0, -TUNNEL_DEPTH - 30]}>
       <mesh>
         <sphereGeometry args={[1.5, 24, 24]} />
-        <meshBasicMaterial color="#fff3d6" />
+        <meshBasicMaterial color={green ? "#d7ffe7" : "#fff3d6"} />
       </mesh>
       <mesh>
         <sphereGeometry args={[7, 24, 24]} />
         <meshBasicMaterial
-          color={GOLD}
+          color={color}
           transparent
           opacity={0.13}
           blending={THREE.AdditiveBlending}
@@ -128,7 +129,7 @@ function Signal() {
       <mesh>
         <sphereGeometry args={[18, 24, 24]} />
         <meshBasicMaterial
-          color={GOLD}
+          color={color}
           transparent
           opacity={0.05}
           blending={THREE.AdditiveBlending}
@@ -157,7 +158,9 @@ function CameraRig() {
   return null;
 }
 
-export default function TunnelCanvas() {
+export default function TunnelCanvas({ theme = "gold" }: { theme?: "gold" | "green" }) {
+  const green = theme === "green";
+  const color = green ? GREEN : GOLD;
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas
@@ -168,9 +171,9 @@ export default function TunnelCanvas() {
       >
         <color attach="background" args={["#08080b"]} />
         <fog attach="fog" args={["#08080b", 40, 300]} />
-        <DataDust />
-        <ChartTraces />
-        <Signal />
+        <DataDust color={color} />
+        <ChartTraces color={color} />
+        <Signal color={color} green={green} />
         <CameraRig />
       </Canvas>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--background)_95%)]" />

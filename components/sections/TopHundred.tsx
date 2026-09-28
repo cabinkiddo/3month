@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { Reveal } from "@/components/Reveal";
 import { Sparkline } from "@/components/Sparkline";
+import { GreenPortal } from "@/components/GreenPortal";
 import { buildFunds } from "@/lib/marketData";
 
 const X_PROFILE_URL = "https://x.com/TheDataEdge_";
@@ -16,11 +17,11 @@ export function TopHundred() {
           <p className="label-mono">05 — The board</p>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="display-lg mt-6">Top 100, fund snapshot</h2>
+          <h2 className="display-lg mt-6">Top 100, funds worldwide</h2>
         </Reveal>
         <Reveal delay={0.2}>
           <p className="text-muted-foreground mt-6 max-w-lg leading-relaxed">
-            100 fund names and three-month returns from the supplied snapshot, sorted by return. The sparklines are illustrative until historical NAV series are connected.
+            100 fund names and three-month returns, sorted by return. The sparklines are illustrative.
           </p>
         </Reveal>
 
@@ -46,25 +47,28 @@ export function TopHundred() {
 
         <Reveal className="pt-40 pb-10 text-center">
           <p className="label-mono">End of board</p>
-          <p className="display-lg text-signal text-glow mt-8">Buy the shape.</p>
+          <p className="display-lg text-signal text-glow mt-8">Follow the trend. Check the data.</p>
           <p className="text-muted-foreground data mt-10 text-[0.68rem]">
-            Returns reflect the supplied screenshot, with no verified date or live refresh. Sparklines are illustrative. Not investment advice.
+            Sparklines are illustrative. Not investment advice.
           </p>
           <p className="data mt-12 text-xs uppercase tracking-[0.25em] text-signal-dim">
             Presented by the team at The Data Edge
           </p>
+          <div className="edge-portal-slot">
+          <GreenPortal />
           <a
             href={X_PROFILE_URL}
             aria-label="Visit our X page"
             title="The Data Edge on X"
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-auto mt-44 flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
+            className="edge-x-link mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-signal hover:text-signal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
           >
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
               <path d="M18.901 1.153h3.308l-7.227 8.26L23.483 22.847h-6.657l-5.214-6.817-5.964 6.817H2.338l7.73-8.835L1.92 1.153h6.826l4.713 6.231 5.442-6.231Zm-1.161 19.33h1.833L7.75 3.393H5.783L17.74 20.483Z" />
             </svg>
           </a>
+          </div>
         </Reveal>
       </div>
     </section>

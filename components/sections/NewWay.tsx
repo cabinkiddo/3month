@@ -15,7 +15,7 @@ export function NewWay() {
         </Reveal>
         <Reveal delay={0.24}>
           <p className="text-muted-foreground mx-auto mt-10 max-w-xl leading-relaxed">
-            Thousands of possible fund paths can be compared on the same window. This experience uses generated examples; a real strategy would need a complete fund universe and verified price history.
+            Thousands of possible fund paths can be compared on the same window.
           </p>
         </Reveal>
 
