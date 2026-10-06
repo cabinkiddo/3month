@@ -8,7 +8,7 @@ import { useScrollTracker } from "@/hooks/useScrollSignal";
 
 const TunnelCanvas = lazy(() => import("@/components/TunnelCanvas"));
 // Replace N/A with the verified contract address when the token is ready.
-const CRYPTO_CA = "0xcb6a84613601008cb7120f7f2850de9c1d75699c";
+const CRYPTO_CA = "0x8588129eea73236607f361e203c889e558bff570";
 
 export default function CryptoPreview() {
   const [webgl, setWebgl] = useState<boolean | null>(null);
