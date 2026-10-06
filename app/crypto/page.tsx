@@ -54,7 +54,7 @@ export default function CryptoPreview() {
           <p className="mt-8 max-w-md leading-relaxed text-muted-foreground">We’re building the next Data Edge project. The details will appear here when the strategy is ready to show.</p>
           <div className="mt-20 w-full max-w-2xl rounded-sm border border-signal/30 bg-[#08150e]/75 p-6 text-left shadow-[0_0_45px_#4bed8b12] backdrop-blur-md md:p-8">
             <p className="label-mono text-signal">A new chapter is taking shape</p>
-            <p className="mt-5 text-lg font-light leading-relaxed md:text-xl">To mark our next project, we’re preparing a cryptocurrency. The verified contract address will appear here when it’s ready.</p>
+            <p className="mt-5 text-lg font-light leading-relaxed md:text-xl">To mark our next project, we’re lanching a cryptocurrency. The verified contract address is now live!</p>
             <div className="mt-7 flex flex-col gap-3 border-t border-signal/20 pt-6 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <span className="label-mono">Contract address (CA)</span>
